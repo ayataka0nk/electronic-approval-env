@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 services:
   postgres:
     image: postgres:13.2
@@ -48,14 +48,21 @@ services:
       - application
     tty: true
     stdin_open: true
+    secrets:
+      - sshkey
     command: >
       bash -c '
         git config --global user.email "$GIT_USER_EMAIL" &&
         git config --global user.name "$GIT_USER_NAME" &&
-        sh /temp/init.sh &&
+        cp /run/secrets/sshkey ~/.ssh/id_rsa &&
+        chmod 600 ~/.ssh/id_rsa &&
+        bash /temp/init.sh &&
         bash
       '
 
+secrets:
+  sshkey:
+    file: ~/.ssh/id_rsa
 volumes:
   database:
     driver: local
