@@ -34,35 +34,27 @@ services:
       postgres:
         condition: service_healthy
 
-  api-dev:
+  dev-api:
     build:
       context: ./api
     volumes:
       - ./api-env:/temp/api-env
+      - ./init.sh:/temp/init.sh
       - workspace:/workspace
     ports:
       - 3010:3010
     networks:
       - postgres
       - application
+    tty: true
+    stdin_open: true
     command: >
       bash -c '
         git config --global user.email "$GIT_USER_EMAIL" &&
         git config --global user.name "$GIT_USER_NAME" &&
-        cd /workspace &&
-        git clone -b $API_BRANCH https://github.com/ayataka0nk/electronic-approval-api.git &&
-        cd electronic-approval-api &&
-        cp /temp/api-env .env
-        npm ci &&
-        npm run dev
+        sh /temp/init.sh &&
+        bash
       '
-    healthcheck:
-      test: ["CMD-SHELL", "curl http://localhost:3010/api/ping-test"]
-      interval: 1s
-      retries: 30
-    depends_on:
-      postgres:
-        condition: service_healthy
 
 volumes:
   database:
