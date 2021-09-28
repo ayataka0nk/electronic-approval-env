@@ -30,7 +30,8 @@
 	"extensions": [
 		"esbenp.prettier-vscode",
 		"dbaeumer.vscode-eslint",
-		"visualstudioexptteam.vscodeintellicode"
+		"visualstudioexptteam.vscodeintellicode",
+		"prisma.prisma",
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
