@@ -20,10 +20,18 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
+		"editor.tabSize": 2,
 		"eslint.format.enable": true,
 		"typescript.validate.enable": false,
 		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"[typescriptreact]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[typescript]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode"
+		},
+		"[prisma]": { "editor.defaultFormatter": "Prisma.prisma" },
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
