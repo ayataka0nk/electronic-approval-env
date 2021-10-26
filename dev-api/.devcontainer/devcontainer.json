@@ -22,7 +22,6 @@
 	"settings": {
 		"editor.tabSize": 2,
 		"eslint.format.enable": true,
-		"typescript.validate.enable": false,
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"[typescriptreact]": {
